@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net6.0;netstandard2.1</TargetFrameworks>
-    <PackageId>Mafin.Template</PackageId>
-    <Description>MAFIN Template package</Description>
+    <PackageId>Mafin.Configuration</PackageId>
+    <Description>MAFIN Configuration package</Description>
     <Authors>MAFIN Squad</Authors>
   </PropertyGroup>
 

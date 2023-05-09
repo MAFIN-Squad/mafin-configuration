@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mafin.Template", "src\Mafin.Template\Mafin.Template.csproj", "{1C8F06BF-70BE-44A5-9F01-1E9775F60B4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mafin.Configuration", "src\Mafin.Configuration\Mafin.Configuration.csproj", "{1C8F06BF-70BE-44A5-9F01-1E9775F60B4F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E080EBEC-509D-4DE0-99F4-6262D0EBFB89}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{608C1756-29E2-45D8-9826-967603FB66B0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mafin.Template.Tests.Unit", "tests\Mafin.Template.Tests.Unit\Mafin.Template.Tests.Unit.csproj", "{4B031DA2-E0E4-4F6C-BDBB-1FD5DB2476FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mafin.Configuration.Tests.Unit", "tests\Mafin.Configuration.Tests.Unit\Mafin.Configuration.Tests.Unit.csproj", "{4B031DA2-E0E4-4F6C-BDBB-1FD5DB2476FE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DABEE7D9-74D7-4FAF-B688-8F7ABBDE8D60}"
 	ProjectSection(SolutionItems) = preProject
