@@ -18,6 +18,8 @@
     <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.Xml" Version="2.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.Binder" Version="2.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="2.0.0" />
     <PackageVersion Include="YamlDotNet" Version="13.1.0" />
     <PackageVersion Include="Tomlyn" Version="0.16.2" />
   </ItemGroup>

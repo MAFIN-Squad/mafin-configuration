@@ -8,8 +8,10 @@ namespace Mafin.Configuration.Providers.SettingsFile;
 /// </summary>
 public static class SettingsFileConfigurationBuilderExtension
 {
+    private const string ConfigurationFileName = "Mafin.Configuration.json";
+
     private static string DefaultSettingsFile =>
-        Path.Combine(Environment.CurrentDirectory, "Mafin.Configuration.json");
+        Path.Combine(Environment.CurrentDirectory, ConfigurationFileName);
 
     /// <summary>
     /// Adds configuration source parameters from module settings file to <paramref name="builder"/>.
