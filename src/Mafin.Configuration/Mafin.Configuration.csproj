@@ -4,6 +4,11 @@
     <PackageId>Mafin.Configuration</PackageId>
     <Description>MAFIN Configuration package</Description>
     <Authors>MAFIN Squad</Authors>
+    <PackageProjectUrl>https://github.com/MAFIN-Squad</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/MAFIN-Squad/mafin-configuration</RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Version></Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,5 +30,8 @@
   <ItemGroup>
     <None Include="build\**\*.targets" Pack="true" PackagePath="build\" />
     <None Include="build\**\*.props" Pack="true" PackagePath="build\" />
+
+    <None Include="..\..\LICENSE" Pack="True" PackagePath="\" />
+    <None Include="..\..\README.md" Pack="True" PackagePath="\" />
   </ItemGroup>
 </Project>
