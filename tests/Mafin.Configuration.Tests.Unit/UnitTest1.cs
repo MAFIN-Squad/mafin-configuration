@@ -1,4 +1,4 @@
-namespace Mafin.Template.Tests.Unit;
+namespace Mafin.Configuration.Tests.Unit;
 
 public class UnitTest1
 {
