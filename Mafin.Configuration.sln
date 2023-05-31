@@ -16,16 +16,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
-		.gitlab-ci.yml = .gitlab-ci.yml
 		Directory.Build.props = Directory.Build.props
 		Directory.Packages.props = Directory.Packages.props
-		GitVersion.yml = GitVersion.yml
 		nuget.config = nuget.config
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{32BF8D0B-AF67-4676-9387-84E4FA4AC738}"
 	ProjectSection(SolutionItems) = preProject
 		tests\.editorconfig = tests\.editorconfig
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{2A6A771E-5F73-4896-83A3-46CFC114CE87}"
+	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yml = .github\dependabot.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{EE1843BD-800D-4CE0-AD00-B717F96D272F}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\release.yml = .github\workflows\release.yml
+		.github\workflows\test.yml = .github\workflows\test.yml
 	EndProjectSection
 EndProject
 Global
@@ -50,6 +60,8 @@ Global
 		{1C8F06BF-70BE-44A5-9F01-1E9775F60B4F} = {E080EBEC-509D-4DE0-99F4-6262D0EBFB89}
 		{4B031DA2-E0E4-4F6C-BDBB-1FD5DB2476FE} = {608C1756-29E2-45D8-9826-967603FB66B0}
 		{32BF8D0B-AF67-4676-9387-84E4FA4AC738} = {DABEE7D9-74D7-4FAF-B688-8F7ABBDE8D60}
+		{2A6A771E-5F73-4896-83A3-46CFC114CE87} = {DABEE7D9-74D7-4FAF-B688-8F7ABBDE8D60}
+		{EE1843BD-800D-4CE0-AD00-B717F96D272F} = {2A6A771E-5F73-4896-83A3-46CFC114CE87}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D8B7548B-B4CE-4A83-BD27-CDB642677955}
