@@ -1,18 +1,17 @@
-namespace Mafin.Configuration
+namespace Mafin.Configuration.Meta;
+
+/// <summary>
+/// Represents the principle of separation of environment dependent configurations.
+/// </summary>
+public enum EnvironmentConfigurationSplitPrinciple
 {
     /// <summary>
-    /// Represents the principle of separation of environment dependent configurations.
+    /// Split configuration by folder.
     /// </summary>
-    public enum EnvironmentConfigurationSplitPrinciple
-    {
-        /// <summary>
-        /// Split configuration by folder.
-        /// </summary>
-        ByFolder,
+    ByFolder,
 
-        /// <summary>
-        /// Split configuration by file name.
-        /// </summary>
-        ByFileName,
-    }
+    /// <summary>
+    /// Split configuration by file name.
+    /// </summary>
+    ByFileName,
 }

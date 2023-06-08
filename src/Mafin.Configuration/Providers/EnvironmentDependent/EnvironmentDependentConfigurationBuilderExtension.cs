@@ -1,4 +1,5 @@
 using System.Reflection;
+using Mafin.Configuration.Meta;
 using Mafin.Configuration.Providers.DirectoryProbing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.FileProviders;

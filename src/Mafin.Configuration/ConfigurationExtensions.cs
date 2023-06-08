@@ -6,7 +6,7 @@ namespace Mafin.Configuration;
 /// <summary>
 /// Extension methods for <see cref="IConfiguration"/>.
 /// </summary>
-public static class ConfigurationExtension
+public static class ConfigurationExtensions
 {
     /// <summary>
     /// Gets a configuration sub-section with the specified key.
