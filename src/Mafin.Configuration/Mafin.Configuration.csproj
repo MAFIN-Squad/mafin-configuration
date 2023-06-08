@@ -8,7 +8,7 @@
     <RepositoryUrl>https://github.com/MAFIN-Squad/mafin-configuration</RepositoryUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version></Version>
+    <Version>0.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
