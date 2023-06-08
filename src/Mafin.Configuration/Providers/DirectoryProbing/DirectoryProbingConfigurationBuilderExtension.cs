@@ -170,7 +170,7 @@ public static class DirectoryProbingConfigurationBuilderExtension
     /// Adds a directory probing configuration source to <paramref name="builder"/>.
     /// </summary>
     /// <param name="builder">The <see cref="IConfigurationBuilder"/> to add to.</param>
-    /// <param name="configureSource">Configures the source.</param>
+    /// <param name="configureSource">Action to Configure the source.</param>
     /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
     public static IConfigurationBuilder AddDirectoryProbing(this IConfigurationBuilder builder, Action<DirectoryProbingConfigurationSource> configureSource)
         => builder.Add(configureSource);

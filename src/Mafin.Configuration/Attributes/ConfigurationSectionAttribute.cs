@@ -9,7 +9,7 @@ public sealed class ConfigurationSectionAttribute : Attribute
     /// <summary>
     /// Initializes a new instance of the <see cref="ConfigurationSectionAttribute"/> class.
     /// </summary>
-    /// <param name="sectionPath"> the path to the root of the section. </param>
+    /// <param name="sectionPath">Path to the root of the section.</param>
     public ConfigurationSectionAttribute(string sectionPath)
     {
         if (string.IsNullOrEmpty(sectionPath))
