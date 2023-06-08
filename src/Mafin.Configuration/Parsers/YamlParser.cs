@@ -41,6 +41,14 @@ internal class YamlParser
         return _data;
     }
 
+    private static bool IsNullValue(YamlScalarNode node)
+    {
+        var isPlain = node.Style == ScalarStyle.Plain;
+        var isNull = Array.Exists(NullValues, value => value.Equals(node.Value, StringComparison.OrdinalIgnoreCase));
+
+        return isPlain && isNull;
+    }
+
     private void VisitNode(YamlNode node, Stack<string> path)
     {
         if (node is YamlScalarNode scalarNode)
@@ -93,13 +101,5 @@ internal class YamlParser
         path.Push(nodePath ?? string.Empty);
         VisitNode(yamlNodePair.Value, path);
         path.Pop();
-    }
-
-    private bool IsNullValue(YamlScalarNode node)
-    {
-        var isPlain = node.Style == ScalarStyle.Plain;
-        var isNull = NullValues.Any(value => value.Equals(node.Value, StringComparison.OrdinalIgnoreCase));
-
-        return isPlain && isNull;
     }
 }
