@@ -10,7 +10,6 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Version>0.1.0</Version>
   </PropertyGroup>
-
   <ItemGroup>
     <InternalsVisibleTo Include="$(MSBuildProjectName).Tests.Unit" />
 
@@ -27,7 +26,6 @@
 
     <None Include="build\**\*.targets" Pack="true" PackagePath="build\" />
     <None Include="build\**\*.props" Pack="true" PackagePath="build\" />
-
     <None Include="..\..\LICENSE" Pack="True" PackagePath="\" />
     <None Include="..\..\README.md" Pack="True" PackagePath="\" />
   </ItemGroup>

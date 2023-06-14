@@ -143,17 +143,14 @@ public class SettingsFileConfigurationProvider : IConfigurationProvider, IDispos
     private ModuleConfig LoadModuleConfig()
     {
         var configuration = new ConfigurationBuilder()
-            .AddDirectoryProbing(new[] { _source.Path })
+            .AddDirectoryProbing(new[] { _source.Path! })
             .Build();
 
         var moduleConfig = configuration.GetSection<ModuleConfig>();
 
-        if (moduleConfig is null)
-        {
-            throw new FileLoadException($"Unable to load configuration from {_source.Path}");
-        }
-
-        return moduleConfig;
+        return moduleConfig is null
+            ? throw new FileLoadException($"Unable to load configuration from {_source.Path}")
+            : moduleConfig;
     }
 
     private IConfiguration LoadConfig()
