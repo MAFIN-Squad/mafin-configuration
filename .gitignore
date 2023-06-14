@@ -396,3 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# .DS_Store files are created by Mac OS X to determine how folder should be displayed
+.DS_Store
