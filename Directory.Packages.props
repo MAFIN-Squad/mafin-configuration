@@ -11,7 +11,7 @@
     <PackageVersion Include="SonarAnalyzer.CSharp" Version="9.5.0.73987" />
     <PackageVersion Include="StyleCop.Analyzers.Unstable" Version="1.2.0.507" />
     <PackageVersion Include="xunit" Version="2.4.2" />
-    <PackageVersion Include="xunit.runner.visualstudio" Version="2.4.5" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.0" />
     <PackageVersion Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.FileExtensions" Version="7.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.Ini" Version="7.0.0" />
