@@ -73,6 +73,7 @@ public static class SettingsFileConfigurationBuilderExtension
     /// <param name="reloadOnChange">Whether the configuration should be reloaded if the file changes.</param>
     /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
     public static IConfigurationBuilder LoadSettingsFile(this IConfigurationBuilder builder, IFileProvider? provider, string path, bool optional, bool reloadOnChange)
+#pragma warning disable PH2071 // Avoid Duplicate Code
     {
         if (builder == null)
         {
@@ -91,6 +92,7 @@ public static class SettingsFileConfigurationBuilderExtension
             s.Optional = optional;
             s.ReloadOnChange = reloadOnChange;
             s.ResolveFileProvider();
+#pragma warning restore PH2071 // TODO: Refactor code to remove duplication
         });
     }
 
