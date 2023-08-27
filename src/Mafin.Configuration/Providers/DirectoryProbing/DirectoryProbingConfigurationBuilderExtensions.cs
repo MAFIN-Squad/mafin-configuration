@@ -4,9 +4,9 @@ using Microsoft.Extensions.FileProviders;
 namespace Mafin.Configuration.Providers.DirectoryProbing;
 
 /// <summary>
-/// Extension methods for <see cref="IConfigurationBuilder"/> to add <see cref="DirectoryProbingConfigurationProvider"/>.
+/// Provides extensions to <see cref="IConfigurationBuilder"/> for adding <see cref="DirectoryProbingConfigurationProvider"/>.
 /// </summary>
-public static class DirectoryProbingConfigurationBuilderExtension
+public static class DirectoryProbingConfigurationBuilderExtensions
 {
     /// <summary>
     /// Adds a directory probing configuration source to <paramref name="builder"/>.

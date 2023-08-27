@@ -1,6 +1,6 @@
+using Mafin.Configuration.Extensions;
 using Mafin.Configuration.Providers.Toml;
 using Mafin.Configuration.Providers.Yaml;
-using Mafin.Configuration.Utils;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Ini;
 using Microsoft.Extensions.Configuration.Json;
@@ -28,7 +28,7 @@ public class DirectoryProbingConfigurationSource : FileConfigurationSource
         ["toml"] = () => new TomlConfigurationSource(),
     };
 
-    private string _baseDirectory = default!;
+    private string _baseDirectory = string.Empty;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="DirectoryProbingConfigurationSource"/> class.
@@ -84,10 +84,7 @@ public class DirectoryProbingConfigurationSource : FileConfigurationSource
     }
 
     /// <inheritdoc/>
-    public override IConfigurationProvider Build(IConfigurationBuilder builder)
-    {
-        return new DirectoryProbingConfigurationProvider(this);
-    }
+    public override IConfigurationProvider Build(IConfigurationBuilder builder) => new DirectoryProbingConfigurationProvider(this);
 
     private List<string> GetConfigurationFiles()
     {
