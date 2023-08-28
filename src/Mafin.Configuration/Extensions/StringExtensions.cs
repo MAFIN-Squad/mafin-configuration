@@ -1,9 +1,9 @@
-namespace Mafin.Configuration.Utils;
+namespace Mafin.Configuration.Extensions;
 
 /// <summary>
-/// Extension methods for <see cref="string"/> to format file path.
+/// Provides extensions to <see cref="string"/>.
 /// </summary>
-internal static class PathFormatUtil
+internal static class StringExtensions
 {
     /// <summary>
     /// Adds <see cref="Path.DirectorySeparatorChar"/> to <paramref name="path"/>.
@@ -18,7 +18,7 @@ internal static class PathFormatUtil
             throw new ArgumentException($"'{nameof(path)}' cannot be null or whitespace.", nameof(path));
         }
 
-        if (path.EndsWith(Path.DirectorySeparatorChar) is false)
+        if (!path.EndsWith(Path.DirectorySeparatorChar))
         {
             path += Path.DirectorySeparatorChar;
         }

@@ -1,3 +1,4 @@
+using Mafin.Configuration.Extensions;
 using Mafin.Configuration.Models;
 using Mafin.Configuration.Providers.DirectoryProbing;
 using Microsoft.Extensions.Configuration;

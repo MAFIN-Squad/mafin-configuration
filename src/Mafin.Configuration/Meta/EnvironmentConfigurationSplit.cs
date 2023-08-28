@@ -3,7 +3,7 @@ namespace Mafin.Configuration.Meta;
 /// <summary>
 /// Represents the principle of separation of environment dependent configurations.
 /// </summary>
-public enum EnvironmentConfigurationSplitPrinciple
+public enum EnvironmentConfigurationSplit
 {
     /// <summary>
     /// Split configuration by folder.

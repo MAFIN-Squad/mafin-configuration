@@ -7,9 +7,9 @@ using YamlDotNet.Core;
 namespace Mafin.Configuration.Providers.Yaml;
 
 /// <summary>
-/// Extension methods for <see cref="IConfigurationBuilder"/> to add <see cref="YamlConfigurationSource"/>.
+/// Provides extensions to <see cref="IConfigurationBuilder"/> for adding <see cref="YamlConfigurationSource"/>.
 /// </summary>
-public static class YamlConfigurationBuilderExtension
+public static class YamlConfigurationBuilderExtensions
 {
     /// <summary>
     /// Adds a TOML configuration source to <paramref name="builder"/>.

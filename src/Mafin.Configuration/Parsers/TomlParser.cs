@@ -38,29 +38,26 @@ internal class TomlParser
 
     private void VisitSyntaxNode(SyntaxNode node, Stack<string> path)
     {
-        if (node is TableSyntax tableNode)
+        switch (node)
         {
-            ParseTableNode(tableNode, path);
-        }
-        else if (node is ArraySyntax arrayNode)
-        {
-            ParseArrayNode(arrayNode, path);
-        }
-        else if (node is ArrayItemSyntax arrayItemSyntax)
-        {
-            ParseArrayItemNode(arrayItemSyntax, path);
-        }
-        else if (node is SyntaxList nodes)
-        {
-            ParseListNode(nodes, path);
-        }
-        else if (node is KeyValueSyntax keyValueNode)
-        {
-            ParseKeyValueNode(keyValueNode, path);
-        }
-        else if (node is ValueSyntax valueNode)
-        {
-            ParseValueNode(valueNode, path);
+            case TableSyntax tableNode:
+                ParseTableNode(tableNode, path);
+                break;
+            case ArraySyntax arrayNode:
+                ParseArrayNode(arrayNode, path);
+                break;
+            case ArrayItemSyntax arrayItemSyntax:
+                ParseArrayItemNode(arrayItemSyntax, path);
+                break;
+            case SyntaxList nodes:
+                ParseListNode(nodes, path);
+                break;
+            case KeyValueSyntax keyValueNode:
+                ParseKeyValueNode(keyValueNode, path);
+                break;
+            case ValueSyntax valueNode:
+                ParseValueNode(valueNode, path);
+                break;
         }
     }
 

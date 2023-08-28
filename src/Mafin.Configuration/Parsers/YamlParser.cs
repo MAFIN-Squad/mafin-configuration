@@ -51,17 +51,17 @@ internal class YamlParser
 
     private void VisitNode(YamlNode node, Stack<string> path)
     {
-        if (node is YamlScalarNode scalarNode)
+        switch (node)
         {
-            VisitScalarNode(scalarNode, path);
-        }
-        else if (node is YamlMappingNode mappingNode)
-        {
-            VisitMappingNode(mappingNode, path);
-        }
-        else if (node is YamlSequenceNode sequenceNode)
-        {
-            VisitSequenceNode(sequenceNode, path);
+            case YamlScalarNode scalarNode:
+                VisitScalarNode(scalarNode, path);
+                break;
+            case YamlMappingNode mappingNode:
+                VisitMappingNode(mappingNode, path);
+                break;
+            case YamlSequenceNode sequenceNode:
+                VisitSequenceNode(sequenceNode, path);
+                break;
         }
     }
 

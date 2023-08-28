@@ -8,25 +8,24 @@
     <RepositoryUrl>https://github.com/MAFIN-Squad/mafin-configuration</RepositoryUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
   </PropertyGroup>
   <ItemGroup>
     <InternalsVisibleTo Include="$(MSBuildProjectName).Tests.Unit" />
 
     <PackageReference Include="Microsoft.Extensions.Configuration" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Ini" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Xml" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" />
-    <PackageReference Include="YamlDotNet" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Xml" />
     <PackageReference Include="Tomlyn" />
+    <PackageReference Include="YamlDotNet" />
 
-    <None Include="build\**\*.targets" Pack="true" PackagePath="build\" />
-    <None Include="build\**\*.props" Pack="true" PackagePath="build\" />
-    <None Include="..\..\LICENSE" Pack="True" PackagePath="\" />
-    <None Include="..\..\README.md" Pack="True" PackagePath="\" />
+    <None Include="build\**\*.props" Pack="True" PackagePath="build\" />
+    <None Include="..\..\LICENSE" Pack="True" PackagePath="\" Visible="False" />
+    <None Include="..\..\README.md" Pack="True" PackagePath="\" Visible="False" />
   </ItemGroup>
 </Project>

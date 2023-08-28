@@ -1,10 +1,10 @@
 using Mafin.Configuration.Attributes;
 using Microsoft.Extensions.Configuration;
 
-namespace Mafin.Configuration;
+namespace Mafin.Configuration.Extensions;
 
 /// <summary>
-/// Extension methods for <see cref="IConfiguration"/>.
+/// Provides extensions to <see cref="IConfiguration"/>.
 /// </summary>
 public static class ConfigurationExtensions
 {
@@ -19,7 +19,7 @@ public static class ConfigurationExtensions
     {
         var pathAttribute = Attribute.GetCustomAttribute(typeof(T), typeof(ConfigurationSectionAttribute)) as ConfigurationSectionAttribute;
         var path = pathAttribute?.SectionPath ?? string.Empty;
-        return GetSection<T>(configuration, path);
+        return configuration.GetSection<T>(path);
     }
 
     /// <summary>
