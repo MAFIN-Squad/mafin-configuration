@@ -3,9 +3,9 @@ using Mafin.Configuration.Attributes;
 namespace Mafin.Configuration.Models;
 
 /// <summary>
-/// Reprsents settings for the Mafin.Configuration module.
+/// Represents settings for the Mafin.Configuration module.
 /// </summary>
-[ConfigurationSection("mafin:configuration")]
+[ConfigurationSection("configuration")]
 internal class ModuleConfig
 {
     /// <summary>
