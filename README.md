@@ -17,7 +17,6 @@ example:
 #### Configuration model
 
 ```cs
-
 [ConfigurationSection("example:exampleSection")]
 public class MyConfigModel
 {
@@ -25,25 +24,25 @@ public class MyConfigModel
 }
 ```
 
-### Example 1: 
+### Example 1:
 
 Given the simple class and configuration file above, we can place the data from `config.yml` file into a new instance of `MyConfigModel` class:
 
 ```cs
-var configuration = new ConfigurationBuilder()
-    .AddYamlFile($"config.yml")
+var config = new ConfigurationBuilder()
+    .AddYamlFile("config.yml")
     .Build();
 
 var appConfig = config.GetSection<MyConfigModel>();
 Console.WriteLine(appConfig.NamedProperty); // returns "value"
 ```
 
-### Example 2: 
+### Example 2:
 
 We can do the same using `DirectoryProbing` feature if we can't specify the file or list if files exactly, but find it using a pattern.
 
 ```cs
-var configuration = new ConfigurationBuilder()
+var config = new ConfigurationBuilder()
     .AddDirectoryProbing("*.yml")
     .Build();
 
@@ -56,10 +55,8 @@ Console.WriteLine(appConfig.NamedProperty); // returns "value"
 #### Mafin.Configuration.json
 ```json
 {
-  "mafin": {
-    "configuration": {
-      "fileExtensions": [ "yml", "yaml" ]
-    }
+  "configuration": {
+    "fileExtensions": [ "yml", "yaml" ]
   }
 }
 ```
@@ -67,7 +64,7 @@ Console.WriteLine(appConfig.NamedProperty); // returns "value"
 We can set up this configuration library using an external configuration file (an example of such a file can be seen above):
 
 ```cs
-var configuration = new ConfigurationBuilder()
+var config = new ConfigurationBuilder()
     .LoadSettingsFile()
     .Build();
 
@@ -105,12 +102,12 @@ Example where configurations are divided by folders:
  |  |  +- other_config.yml
  |  |
  |  +- release
- |     +- config.yml 
+ |     +- config.yml
  |     +- other_config.yml
 ```
 
 ```cs
-var configuration = new ConfigurationBuilder()
+var config = new ConfigurationBuilder()
     .AddEnvironmentDependentConfiguration(EnvironmentConfigurationSplitPrinciple.ByFolder, "config")
     .Build();
 
@@ -133,7 +130,7 @@ Example where configurations are divided by filenames
 Using the file above we can set up the configuration module using an external file with the settings
 
 ```cs
-var configuration = new ConfigurationBuilder()
+var config = new ConfigurationBuilder()
     .AddEnvironmentDependentConfiguration(EnvironmentConfigurationSplitPrinciple.ByFileName, "config")
     .Build();
 
