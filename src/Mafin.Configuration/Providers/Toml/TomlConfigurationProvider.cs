@@ -15,10 +15,6 @@ public class TomlConfigurationProvider : FileConfigurationProvider
     public TomlConfigurationProvider(FileConfigurationSource source)
         : base(source)
     {
-        if (source is null)
-        {
-            throw new ArgumentNullException(nameof(source), $"'{nameof(source)}' cannot be null");
-        }
     }
 
     /// <inheritdoc/>
@@ -26,8 +22,8 @@ public class TomlConfigurationProvider : FileConfigurationProvider
     {
         try
         {
-            using var reader = new StreamReader(stream);
-            var parser = new TomlParser();
+            using StreamReader reader = new(stream);
+            TomlParser parser = new();
             Data = parser.Parse(reader.ReadToEnd());
         }
         catch (Exception e)

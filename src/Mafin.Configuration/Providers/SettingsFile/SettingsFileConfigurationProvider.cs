@@ -22,12 +22,7 @@ public class SettingsFileConfigurationProvider : IConfigurationProvider, IDispos
     /// <param name="source">The source settings.</param>
     public SettingsFileConfigurationProvider(SettingsFileConfigurationSource source)
     {
-        if (source is null)
-        {
-            throw new ArgumentNullException(nameof(source), $"'{nameof(source)}' cannot be null");
-        }
-
-        _source = source;
+        _source = source ?? throw new ArgumentNullException(nameof(source), $"'{nameof(source)}' cannot be null");
     }
 
     /// <summary>
@@ -79,17 +74,14 @@ public class SettingsFileConfigurationProvider : IConfigurationProvider, IDispos
     /// <param name="earlierKeys">The child keys returned by the preceding providers for the same parent path.</param>
     /// <param name="parentPath">The parent path.</param>
     /// <returns>The child keys.</returns>
-    public IEnumerable<string> GetChildKeys(
-        IEnumerable<string> earlierKeys,
-        string? parentPath)
+    public IEnumerable<string> GetChildKeys(IEnumerable<string> earlierKeys, string? parentPath)
     {
-        IConfiguration section = parentPath == null ? Configuration : Configuration.GetSection(parentPath);
-        var keys = new List<string>();
-        foreach (IConfigurationSection child in section.GetChildren())
-        {
-            keys.Add(child.Key);
-        }
+        IConfiguration section = parentPath == null
+            ? Configuration
+            : Configuration.GetSection(parentPath);
 
+        List<string> keys = [];
+        keys.AddRange(section.GetChildren().Select(child => child.Key));
         keys.AddRange(earlierKeys);
 
         return keys;
@@ -157,20 +149,20 @@ public class SettingsFileConfigurationProvider : IConfigurationProvider, IDispos
     private IConfiguration LoadConfig()
     {
         var basePath = _providerConfig!.Directory ?? Environment.CurrentDirectory;
-        var filter = new List<string>();
+        List<string> filter = [];
 
-        if (_providerConfig.FileExtensions?.Any() ?? false)
+        if (_providerConfig.FileExtensions?.Count > 0)
         {
             var extensions = _providerConfig.FileExtensions.Select(x => Path.ChangeExtension("*", x));
             filter.AddRange(extensions);
         }
 
-        if (_providerConfig.Files?.Any() ?? false)
+        if (_providerConfig.Files?.Count > 0)
         {
             filter.AddRange(_providerConfig.Files);
         }
 
-        if (!filter.Any())
+        if (filter.Count is 0)
         {
             filter.Add("*.*");
         }

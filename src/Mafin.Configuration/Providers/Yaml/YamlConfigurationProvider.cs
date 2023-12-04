@@ -16,10 +16,6 @@ public class YamlConfigurationProvider : FileConfigurationProvider
     public YamlConfigurationProvider(FileConfigurationSource source)
         : base(source)
     {
-        if (source is null)
-        {
-            throw new ArgumentNullException(nameof(source), $"'{nameof(source)}' cannot be null");
-        }
     }
 
     /// <inheritdoc/>
@@ -27,7 +23,7 @@ public class YamlConfigurationProvider : FileConfigurationProvider
     {
         try
         {
-            var parser = new YamlParser();
+            YamlParser parser = new();
             Data = parser.Parse(stream);
         }
         catch (YamlException e)

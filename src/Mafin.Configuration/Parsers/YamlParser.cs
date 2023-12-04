@@ -10,9 +10,9 @@ namespace Mafin.Configuration.Parsers;
 /// </summary>
 internal class YamlParser
 {
-    private static readonly string[] NullValues = new[] { "null", "~" };
+    private static readonly string[] NullValues = ["null", "~"];
 
-    private readonly IDictionary<string, string?> _data = new SortedDictionary<string, string?>(StringComparer.OrdinalIgnoreCase);
+    private readonly SortedDictionary<string, string?> _data = new(StringComparer.OrdinalIgnoreCase);
 
     /// <summary>
     /// Parses <paramref name="unparsedStream"/> from YAML format.
@@ -28,11 +28,11 @@ internal class YamlParser
 
         _data.Clear();
 
-        using var streamReader = new StreamReader(unparsedStream);
-        var stream = new YamlStream();
+        using StreamReader streamReader = new(unparsedStream);
+        YamlStream stream = [];
         stream.Load(streamReader);
 
-        if (stream.Documents.Any())
+        if (stream.Documents.Count > 0)
         {
             var rootNode = stream.Documents.Single().RootNode;
             VisitNode(rootNode, new Stack<string>());
@@ -73,7 +73,9 @@ internal class YamlParser
             throw new FormatException();
         }
 
-        _data[formattedPath] = IsNullValue(node) ? null : node.Value;
+        _data[formattedPath] = IsNullValue(node)
+            ? null
+            : node.Value;
     }
 
     private void VisitMappingNode(YamlMappingNode node, Stack<string> path)
@@ -86,7 +88,7 @@ internal class YamlParser
 
     private void VisitSequenceNode(YamlSequenceNode node, Stack<string> path)
     {
-        for (int i = 0; i < node.Children.Count; i++)
+        for (var i = 0; i < node.Children.Count; i++)
         {
             path.Push(i.ToString(CultureInfo.CurrentCulture));
             VisitNode(node.Children[i], path);

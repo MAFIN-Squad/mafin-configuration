@@ -17,10 +17,8 @@ public static class TomlConfigurationBuilderExtensions
     /// <param name="path">Path relative to the base path stored in
     /// <see cref="IConfigurationBuilder.Properties"/> of <paramref name="builder"/>.</param>
     /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
-    public static IConfigurationBuilder AddTomlFile(this IConfigurationBuilder builder, string path)
-    {
-        return AddTomlFile(builder, provider: null, path: path, optional: false, reloadOnChange: false);
-    }
+    public static IConfigurationBuilder AddTomlFile(this IConfigurationBuilder builder, string path) =>
+        AddTomlFile(builder, provider: null, path: path, optional: false, reloadOnChange: false);
 
     /// <summary>
     /// Adds a TOML configuration source to <paramref name="builder"/>.
@@ -30,10 +28,8 @@ public static class TomlConfigurationBuilderExtensions
     /// <see cref="IConfigurationBuilder.Properties"/> of <paramref name="builder"/>.</param>
     /// <param name="optional">Whether the file is optional.</param>
     /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
-    public static IConfigurationBuilder AddTomlFile(this IConfigurationBuilder builder, string path, bool optional)
-    {
-        return AddTomlFile(builder, provider: null, path: path, optional: optional, reloadOnChange: false);
-    }
+    public static IConfigurationBuilder AddTomlFile(this IConfigurationBuilder builder, string path, bool optional) =>
+        AddTomlFile(builder, provider: null, path: path, optional: optional, reloadOnChange: false);
 
     /// <summary>
     /// Adds a TOML configuration source to <paramref name="builder"/>.
@@ -44,10 +40,8 @@ public static class TomlConfigurationBuilderExtensions
     /// <param name="optional">Whether the file is optional.</param>
     /// <param name="reloadOnChange">Whether the configuration should be reloaded if the file changes.</param>
     /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
-    public static IConfigurationBuilder AddTomlFile(this IConfigurationBuilder builder, string path, bool optional, bool reloadOnChange)
-    {
-        return AddTomlFile(builder, provider: null, path: path, optional: optional, reloadOnChange: reloadOnChange);
-    }
+    public static IConfigurationBuilder AddTomlFile(this IConfigurationBuilder builder, string path, bool optional, bool reloadOnChange) =>
+        AddTomlFile(builder, provider: null, path: path, optional: optional, reloadOnChange: reloadOnChange);
 
     /// <summary>
     /// Adds a TOML configuration source to <paramref name="builder"/>.
@@ -61,6 +55,7 @@ public static class TomlConfigurationBuilderExtensions
     /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
     public static IConfigurationBuilder AddTomlFile(this IConfigurationBuilder builder, IFileProvider? provider, string path, bool optional, bool reloadOnChange)
     {
+#pragma warning disable PH2071 // Avoid Duplicate Code
         if (builder == null)
         {
             throw new ArgumentNullException(nameof(builder), $"'{nameof(builder)}' cannot be null");
@@ -79,6 +74,7 @@ public static class TomlConfigurationBuilderExtensions
             s.ReloadOnChange = reloadOnChange;
             s.ResolveFileProvider();
         });
+#pragma warning restore PH2071 // TODO: Refactor code to remove duplication
     }
 
     /// <summary>
@@ -87,8 +83,8 @@ public static class TomlConfigurationBuilderExtensions
     /// <param name="builder">The <see cref="IConfigurationBuilder"/> to add to.</param>
     /// <param name="configureSource">Configures the source.</param>
     /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
-    public static IConfigurationBuilder AddTomlFile(this IConfigurationBuilder builder, Action<TomlConfigurationSource> configureSource)
-        => builder.Add(configureSource);
+    public static IConfigurationBuilder AddTomlFile(this IConfigurationBuilder builder, Action<TomlConfigurationSource> configureSource) =>
+        builder.Add(configureSource);
 
     /// <summary>
     /// Adds a TOML configuration source to <paramref name="builder"/>.
@@ -104,10 +100,9 @@ public static class TomlConfigurationBuilderExtensions
         }
 
         IDictionary<string, string?> data;
-
         try
         {
-            using var reader = new StreamReader(stream);
+            using StreamReader reader = new(stream);
             data = new TomlParser().Parse(reader.ReadToEnd());
         }
         catch (Exception e)
@@ -115,7 +110,7 @@ public static class TomlConfigurationBuilderExtensions
             throw new FormatException("Unable to parse configuration file in TOML format.", e);
         }
 
-        var source = new MemoryConfigurationSource() { InitialData = data };
+        MemoryConfigurationSource source = new() { InitialData = data };
         return builder.Add(source);
     }
 }

@@ -16,10 +16,10 @@ internal class ModuleConfig
     /// <summary>
     /// Gets or sets value with file extensions to be loaded.
     /// </summary>
-    public List<string> FileExtensions { get; set; } = new();
+    public List<string> FileExtensions { get; set; } = [];
 
     /// <summary>
     /// Gets or sets value with list of files to be loaded.
     /// </summary>
-    public List<string> Files { get; set; } = new();
+    public List<string> Files { get; set; } = [];
 }

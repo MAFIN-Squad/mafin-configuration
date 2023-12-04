@@ -13,10 +13,8 @@ public static class DirectoryProbingConfigurationBuilderExtensions
     /// </summary>
     /// <param name="builder">The <see cref="IConfigurationBuilder"/> to add to.</param>
     /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
-    public static IConfigurationBuilder AddDirectoryProbing(this IConfigurationBuilder builder)
-    {
-        return AddDirectoryProbing(builder, DirectoryProbingConfigurationSource.AllFilesPattern);
-    }
+    public static IConfigurationBuilder AddDirectoryProbing(this IConfigurationBuilder builder) =>
+        AddDirectoryProbing(builder, DirectoryProbingConfigurationSource.AllFilesPattern);
 
     /// <summary>
     /// Adds a directory probing configuration source to <paramref name="builder"/>.
@@ -24,12 +22,8 @@ public static class DirectoryProbingConfigurationBuilderExtensions
     /// <param name="builder">The <see cref="IConfigurationBuilder"/> to add to.</param>
     /// <param name="filePathPattern">The <see cref="string"/> with pattern of the name of the file to be probed.</param>
     /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
-    public static IConfigurationBuilder AddDirectoryProbing(
-        this IConfigurationBuilder builder,
-        string filePathPattern)
-    {
-        return AddDirectoryProbing(builder, new[] { filePathPattern });
-    }
+    public static IConfigurationBuilder AddDirectoryProbing(this IConfigurationBuilder builder, string filePathPattern) =>
+        AddDirectoryProbing(builder, new[] { filePathPattern });
 
     /// <summary>
     /// Adds a directory probing configuration source to <paramref name="builder"/>.
@@ -37,12 +31,8 @@ public static class DirectoryProbingConfigurationBuilderExtensions
     /// <param name="builder">The <see cref="IConfigurationBuilder"/> to add to.</param>
     /// <param name="filePathPatterns">The <see cref="IEnumerable{String}"/> with patterns of the name of the file to be probed.</param>
     /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
-    public static IConfigurationBuilder AddDirectoryProbing(
-        this IConfigurationBuilder builder,
-        IEnumerable<string> filePathPatterns)
-    {
-        return AddDirectoryProbing(builder, filePathPatterns, Environment.CurrentDirectory);
-    }
+    public static IConfigurationBuilder AddDirectoryProbing(this IConfigurationBuilder builder, IEnumerable<string> filePathPatterns) =>
+        AddDirectoryProbing(builder, filePathPatterns, Environment.CurrentDirectory);
 
     /// <summary>
     /// Adds a directory probing configuration source to <paramref name="builder"/>.
@@ -51,13 +41,8 @@ public static class DirectoryProbingConfigurationBuilderExtensions
     /// <param name="filePathPattern">The <see cref="string"/> with pattern of the name of the file to be probed.</param>
     /// <param name="baseDirectory">The <see cref="string"/> with base directory.</param>
     /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
-    public static IConfigurationBuilder AddDirectoryProbing(
-        this IConfigurationBuilder builder,
-        string filePathPattern,
-        string baseDirectory)
-    {
-        return AddDirectoryProbing(builder, new[] { filePathPattern }, baseDirectory);
-    }
+    public static IConfigurationBuilder AddDirectoryProbing(this IConfigurationBuilder builder, string filePathPattern, string baseDirectory) =>
+        AddDirectoryProbing(builder, new[] { filePathPattern }, baseDirectory);
 
     /// <summary>
     /// Adds a directory probing configuration source to <paramref name="builder"/>.
@@ -66,13 +51,8 @@ public static class DirectoryProbingConfigurationBuilderExtensions
     /// <param name="filePathPatterns">The <see cref="IEnumerable{String}"/> with patterns of the name of the file to be probed.</param>
     /// <param name="baseDirectory">The <see cref="string"/> with base directory.</param>
     /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
-    public static IConfigurationBuilder AddDirectoryProbing(
-        this IConfigurationBuilder builder,
-        IEnumerable<string> filePathPatterns,
-        string baseDirectory)
-    {
-        return AddDirectoryProbing(builder, filePathPatterns, baseDirectory, formatSourceMap: null);
-    }
+    public static IConfigurationBuilder AddDirectoryProbing(this IConfigurationBuilder builder, IEnumerable<string> filePathPatterns, string baseDirectory) =>
+        AddDirectoryProbing(builder, filePathPatterns, baseDirectory, formatSourceMap: null);
 
     /// <summary>
     /// Adds a directory probing configuration source to <paramref name="builder"/>.
@@ -95,7 +75,7 @@ public static class DirectoryProbingConfigurationBuilderExtensions
     /// <param name="builder">The <see cref="IConfigurationBuilder"/> to add to.</param>
     /// <param name="filePathPatterns">The <see cref="IEnumerable{String}"/> with patterns of the name of the file to be probed.</param>
     /// <param name="baseDirectory">The <see cref="string"/> with base directory.</param>
-    /// <param name="formatSourceMap">The dictionarythat contains the relation of the file format to the function that creating the corresponding <see cref="FileConfigurationSource"/>.</param>
+    /// <param name="formatSourceMap">The dictionary that contains the relation of the file format to the function that creating the corresponding <see cref="FileConfigurationSource"/>.</param>
     /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
     public static IConfigurationBuilder AddDirectoryProbing(
         this IConfigurationBuilder builder,
@@ -172,6 +152,6 @@ public static class DirectoryProbingConfigurationBuilderExtensions
     /// <param name="builder">The <see cref="IConfigurationBuilder"/> to add to.</param>
     /// <param name="configureSource">Action to Configure the source.</param>
     /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
-    public static IConfigurationBuilder AddDirectoryProbing(this IConfigurationBuilder builder, Action<DirectoryProbingConfigurationSource> configureSource)
-        => builder.Add(configureSource);
+    public static IConfigurationBuilder AddDirectoryProbing(this IConfigurationBuilder builder, Action<DirectoryProbingConfigurationSource> configureSource) =>
+        builder.Add(configureSource);
 }

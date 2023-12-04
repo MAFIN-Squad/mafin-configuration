@@ -88,7 +88,7 @@ public class DirectoryProbingConfigurationSource : FileConfigurationSource
 
     private List<string> GetConfigurationFiles()
     {
-        var result = new List<string>();
+        List<string> result = [];
 
         foreach (var pattern in FilePathPatterns)
         {
@@ -107,7 +107,7 @@ public class DirectoryProbingConfigurationSource : FileConfigurationSource
 
     private List<FileConfigurationSource> CreateConfigurationSources(IEnumerable<string> files)
     {
-        var result = new List<FileConfigurationSource>();
+        List<FileConfigurationSource> result = [];
 
         foreach (var filePath in files)
         {

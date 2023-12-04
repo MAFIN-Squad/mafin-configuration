@@ -10,7 +10,7 @@ namespace Mafin.Configuration.Parsers;
 /// </summary>
 internal class TomlParser
 {
-    private readonly IDictionary<string, string?> _data = new SortedDictionary<string, string?>(StringComparer.OrdinalIgnoreCase);
+    private readonly SortedDictionary<string, string?> _data = new(StringComparer.OrdinalIgnoreCase);
 
     /// <summary>
     /// Parses <paramref name="value"/> from TOML format.
@@ -91,7 +91,7 @@ internal class TomlParser
     private void ParseArrayNode(ArraySyntax node, Stack<string> path)
     {
         using var enumerator = node.Items.GetEnumerator();
-        int i = 0;
+        var i = 0;
         while (enumerator.MoveNext())
         {
             var value = enumerator.Current;
