@@ -55,8 +55,8 @@ public static class YamlConfigurationBuilderExtensions
     /// <param name="reloadOnChange">Whether the configuration should be reloaded if the file changes.</param>
     /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
     public static IConfigurationBuilder AddYamlFile(this IConfigurationBuilder builder, IFileProvider? provider, string path, bool optional, bool reloadOnChange)
-    {
 #pragma warning disable PH2071 // Avoid Duplicate Code
+    {
         if (builder == null)
         {
             throw new ArgumentNullException(nameof(builder), $"'{nameof(builder)}' cannot be null");
