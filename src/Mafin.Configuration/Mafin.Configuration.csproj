@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net6.0;net7.0;net8.0</TargetFrameworks>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <PackageId>Mafin.Configuration</PackageId>
     <Description>MAFIN Configuration package</Description>
     <Authors>MAFIN Squad</Authors>
@@ -13,6 +13,7 @@
   <ItemGroup>
     <InternalsVisibleTo Include="$(MSBuildProjectName).Tests.Unit" />
 
+    <PackageReference Include="Microsoft.CSharp" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Ini" />
