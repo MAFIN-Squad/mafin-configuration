@@ -14,7 +14,7 @@
     <PackageVersion Include="Microsoft.Extensions.Configuration.Xml" Version="8.0.0" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageVersion Include="Philips.CodeAnalysis.DuplicateCodeAnalyzer" Version="1.1.7" />
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="9.14.0.81108" />
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="9.15.0.81779" />
     <PackageVersion Include="StyleCop.Analyzers.Unstable" Version="1.2.0.507" />
     <PackageVersion Include="Tomlyn" Version="0.17.0" />
     <PackageVersion Include="xunit.analyzers" Version="1.6.0" />
