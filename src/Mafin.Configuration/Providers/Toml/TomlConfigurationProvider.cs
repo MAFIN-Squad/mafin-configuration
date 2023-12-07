@@ -6,17 +6,12 @@ namespace Mafin.Configuration.Providers.Toml;
 /// <summary>
 /// A TOML file based <see cref="FileConfigurationProvider"/>.
 /// </summary>
-public class TomlConfigurationProvider : FileConfigurationProvider
+/// <remarks>
+/// Initializes a new instance of the <see cref="TomlConfigurationProvider"/> class.
+/// </remarks>
+/// <param name="source">The source settings.</param>
+public class TomlConfigurationProvider(FileConfigurationSource source) : FileConfigurationProvider(source)
 {
-    /// <summary>
-    /// Initializes a new instance of the <see cref="TomlConfigurationProvider"/> class.
-    /// </summary>
-    /// <param name="source">The source settings.</param>
-    public TomlConfigurationProvider(FileConfigurationSource source)
-        : base(source)
-    {
-    }
-
     /// <inheritdoc/>
     public override void Load(Stream stream)
     {
