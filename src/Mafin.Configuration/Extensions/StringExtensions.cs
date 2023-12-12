@@ -30,7 +30,7 @@ internal static class StringExtensions
     /// Checks whether <paramref name="path"/> is fully qualified.
     /// </summary>
     /// <param name="path"><see cref="string"/> to be checked.</param>
-    /// <returns>see langword="true"/> if the <paramref name="path"/> is fully qualified.</returns>
+    /// <returns><see langword="true"/> if the <paramref name="path"/> is fully qualified.</returns>
     public static bool IsPathFullyQualified(this string path)
     {
         if (Environment.OSVersion.Platform is PlatformID.Win32NT)
