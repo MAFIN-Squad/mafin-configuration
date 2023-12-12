@@ -18,11 +18,38 @@ internal static class StringExtensions
             throw new ArgumentException($"'{nameof(path)}' cannot be null or whitespace.", nameof(path));
         }
 
-        if (!path.EndsWith(Path.DirectorySeparatorChar))
+        if (!path.EndsWith(Path.DirectorySeparatorChar.ToString()))
         {
             path += Path.DirectorySeparatorChar;
         }
 
         return path;
     }
+
+    /// <summary>
+    /// Checks whether <paramref name="path"/> is fully qualified.
+    /// </summary>
+    /// <param name="path"><see cref="string"/> to be checked.</param>
+    /// <returns>see langword="true"/> if the <paramref name="path"/> is fully qualified.</returns>
+    public static bool IsPathFullyQualified(this string path)
+    {
+        if (Environment.OSVersion.Platform is PlatformID.Win32NT)
+        {
+            return path.Length >= 3
+                && path[1] == Path.VolumeSeparatorChar
+                && path[2] == Path.DirectorySeparatorChar
+                && IsValidDriveChar(path[0]);
+        }
+        else
+        {
+            return Path.IsPathRooted(path);
+        }
+    }
+
+    /// <summary>
+    /// Checks whether <paramref name="value"/> is a valid drive letter.
+    /// </summary>
+    /// <param name="value">character to be checked.</param>
+    /// <returns><see langword="true"/> if the given character is a valid drive letter.</returns>
+    internal static bool IsValidDriveChar(char value) => (uint)((value | 0x20) - 'a') <= ('z' - 'a');
 }

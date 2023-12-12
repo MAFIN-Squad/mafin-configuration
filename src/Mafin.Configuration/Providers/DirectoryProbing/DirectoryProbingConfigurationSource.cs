@@ -72,7 +72,7 @@ public class DirectoryProbingConfigurationSource : FileConfigurationSource
         {
             value = value.AddDirectorySeparatorChar();
 
-            if (System.IO.Path.IsPathFullyQualified(value))
+            if (value.IsPathFullyQualified())
             {
                 _baseDirectory = value;
             }
@@ -92,7 +92,7 @@ public class DirectoryProbingConfigurationSource : FileConfigurationSource
 
         foreach (var pattern in FilePathPatterns)
         {
-            if (System.IO.Path.IsPathFullyQualified(pattern))
+            if (pattern.IsPathFullyQualified())
             {
                 result.Add(pattern);
             }
@@ -112,9 +112,8 @@ public class DirectoryProbingConfigurationSource : FileConfigurationSource
         foreach (var filePath in files)
         {
             var extension = System.IO.Path.GetExtension(filePath).TrimStart('.');
-            var sourceFactory = FormatSourceMap.GetValueOrDefault(extension);
 
-            if (sourceFactory != default)
+            if (FormatSourceMap.TryGetValue(extension, out var sourceFactory))
             {
                 var source = sourceFactory.Invoke();
                 source.Path = filePath;
