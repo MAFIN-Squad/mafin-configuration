@@ -46,5 +46,6 @@ internal static class StringExtensions
     /// </summary>
     /// <param name="value">character to be checked.</param>
     /// <returns><see langword="true"/> if the given character is a valid drive letter.</returns>
-    internal static bool IsValidDriveChar(char value) => value is >= 'a' and <= 'z';
+    internal static bool IsValidDriveChar(char value) =>
+        value is (>= 'a' and <= 'z') or (>= 'A' and <= 'Z');
 }
