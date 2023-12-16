@@ -70,9 +70,7 @@ public class DirectoryProbingConfigurationProvider : IConfigurationProvider, IDi
     /// <param name="earlierKeys">The child keys returned by the preceding providers for the same parent path.</param>
     /// <param name="parentPath">The parent path.</param>
     /// <returns>The child keys.</returns>
-    public IEnumerable<string> GetChildKeys(
-        IEnumerable<string> earlierKeys,
-        string? parentPath)
+    public IEnumerable<string> GetChildKeys(IEnumerable<string> earlierKeys, string? parentPath)
     {
         var section = parentPath == null
             ? Configuration

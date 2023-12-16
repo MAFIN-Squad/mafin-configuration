@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration.Ini;
 using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.Configuration.Xml;
 
+using IO = System.IO;
+
 namespace Mafin.Configuration.Providers.DirectoryProbing;
 
 /// <summary>
@@ -72,14 +74,9 @@ public class DirectoryProbingConfigurationSource : FileConfigurationSource
         {
             value = value.AddDirectorySeparatorChar();
 
-            if (value.IsPathFullyQualified())
-            {
-                _baseDirectory = value;
-            }
-            else
-            {
-                _baseDirectory = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, value));
-            }
+            _baseDirectory = value.IsPathFullyQualified()
+                ? value
+                : IO.Path.GetFullPath(IO.Path.Combine(Environment.CurrentDirectory, value));
         }
     }
 
@@ -111,7 +108,7 @@ public class DirectoryProbingConfigurationSource : FileConfigurationSource
 
         foreach (var filePath in files)
         {
-            var extension = System.IO.Path.GetExtension(filePath).TrimStart('.');
+            var extension = IO.Path.GetExtension(filePath).TrimStart('.');
 
             if (FormatSourceMap.TryGetValue(extension, out var sourceFactory))
             {

@@ -33,12 +33,12 @@ internal static class StringExtensions
     /// <returns><see langword="true"/> if the <paramref name="path"/> is fully qualified.</returns>
     public static bool IsPathFullyQualified(this string path)
     {
-        return Environment.OSVersion.Platform is not PlatformID.Win32NT
-            ? Path.IsPathRooted(path)
-            : path.Length >= 3
+        return Environment.OSVersion.Platform is PlatformID.Win32NT
+            ? path.Length >= 3
                 && path[1] == Path.VolumeSeparatorChar
                 && path[2] == Path.DirectorySeparatorChar
-                && IsValidDriveChar(path[0]);
+                && IsValidDriveChar(path[0])
+            : Path.IsPathRooted(path);
     }
 
     /// <summary>
@@ -46,6 +46,6 @@ internal static class StringExtensions
     /// </summary>
     /// <param name="value">character to be checked.</param>
     /// <returns><see langword="true"/> if the given character is a valid drive letter.</returns>
-    internal static bool IsValidDriveChar(char value) =>
+    private static bool IsValidDriveChar(char value) =>
         value is (>= 'a' and <= 'z') or (>= 'A' and <= 'Z');
 }
