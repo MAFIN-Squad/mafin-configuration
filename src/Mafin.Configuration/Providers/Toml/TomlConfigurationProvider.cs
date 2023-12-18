@@ -6,28 +6,19 @@ namespace Mafin.Configuration.Providers.Toml;
 /// <summary>
 /// A TOML file based <see cref="FileConfigurationProvider"/>.
 /// </summary>
-public class TomlConfigurationProvider : FileConfigurationProvider
+/// <remarks>
+/// Initializes a new instance of the <see cref="TomlConfigurationProvider"/> class.
+/// </remarks>
+/// <param name="source">The source settings.</param>
+public class TomlConfigurationProvider(FileConfigurationSource source) : FileConfigurationProvider(source)
 {
-    /// <summary>
-    /// Initializes a new instance of the <see cref="TomlConfigurationProvider"/> class.
-    /// </summary>
-    /// <param name="source">The source settings.</param>
-    public TomlConfigurationProvider(FileConfigurationSource source)
-        : base(source)
-    {
-        if (source is null)
-        {
-            throw new ArgumentNullException(nameof(source), $"'{nameof(source)}' cannot be null");
-        }
-    }
-
     /// <inheritdoc/>
     public override void Load(Stream stream)
     {
         try
         {
-            using var reader = new StreamReader(stream);
-            var parser = new TomlParser();
+            using StreamReader reader = new(stream);
+            TomlParser parser = new();
             Data = parser.Parse(reader.ReadToEnd());
         }
         catch (Exception e)

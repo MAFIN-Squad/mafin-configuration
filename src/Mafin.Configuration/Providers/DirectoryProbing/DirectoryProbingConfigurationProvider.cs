@@ -18,12 +18,7 @@ public class DirectoryProbingConfigurationProvider : IConfigurationProvider, IDi
     /// <param name="source">The source settings.</param>
     public DirectoryProbingConfigurationProvider(DirectoryProbingConfigurationSource source)
     {
-        if (source is null)
-        {
-            throw new ArgumentNullException(nameof(source), $"'{nameof(source)}' cannot be null");
-        }
-
-        _source = source;
+        _source = source ?? throw new ArgumentNullException(nameof(source), $"'{nameof(source)}' cannot be null");
     }
 
     /// <summary>
@@ -75,17 +70,14 @@ public class DirectoryProbingConfigurationProvider : IConfigurationProvider, IDi
     /// <param name="earlierKeys">The child keys returned by the preceding providers for the same parent path.</param>
     /// <param name="parentPath">The parent path.</param>
     /// <returns>The child keys.</returns>
-    public IEnumerable<string> GetChildKeys(
-        IEnumerable<string> earlierKeys,
-        string? parentPath)
+    public IEnumerable<string> GetChildKeys(IEnumerable<string> earlierKeys, string? parentPath)
     {
-        IConfiguration section = parentPath == null ? Configuration : Configuration.GetSection(parentPath);
-        var keys = new List<string>();
-        foreach (IConfigurationSection child in section.GetChildren())
-        {
-            keys.Add(child.Key);
-        }
+        var section = parentPath == null
+            ? Configuration
+            : Configuration.GetSection(parentPath);
 
+        List<string> keys = [];
+        keys.AddRange(section.GetChildren().Select(child => child.Key));
         keys.AddRange(earlierKeys);
 
         return keys;
@@ -96,7 +88,7 @@ public class DirectoryProbingConfigurationProvider : IConfigurationProvider, IDi
     /// </summary>
     public void Load()
     {
-        var builder = new ConfigurationBuilder();
+        ConfigurationBuilder builder = new();
         foreach (var source in _source.Sources)
         {
             builder.Add(source);

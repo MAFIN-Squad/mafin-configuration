@@ -7,27 +7,18 @@ namespace Mafin.Configuration.Providers.Yaml;
 /// <summary>
 /// A YAML file based <see cref="FileConfigurationProvider"/>.
 /// </summary>
-public class YamlConfigurationProvider : FileConfigurationProvider
+/// <remarks>
+/// Initializes a new instance of the <see cref="YamlConfigurationProvider"/> class.
+/// </remarks>
+/// <param name="source">The source settings.</param>
+public class YamlConfigurationProvider(FileConfigurationSource source) : FileConfigurationProvider(source)
 {
-    /// <summary>
-    /// Initializes a new instance of the <see cref="YamlConfigurationProvider"/> class.
-    /// </summary>
-    /// <param name="source">The source settings.</param>
-    public YamlConfigurationProvider(FileConfigurationSource source)
-        : base(source)
-    {
-        if (source is null)
-        {
-            throw new ArgumentNullException(nameof(source), $"'{nameof(source)}' cannot be null");
-        }
-    }
-
     /// <inheritdoc/>
     public override void Load(Stream stream)
     {
         try
         {
-            var parser = new YamlParser();
+            YamlParser parser = new();
             Data = parser.Parse(stream);
         }
         catch (YamlException e)

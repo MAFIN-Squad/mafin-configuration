@@ -18,10 +18,8 @@ public static class YamlConfigurationBuilderExtensions
     /// <param name="path">Path relative to the base path stored in
     /// <see cref="IConfigurationBuilder.Properties"/> of <paramref name="builder"/>.</param>
     /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
-    public static IConfigurationBuilder AddYamlFile(this IConfigurationBuilder builder, string path)
-    {
-        return AddYamlFile(builder, provider: null, path: path, optional: false, reloadOnChange: false);
-    }
+    public static IConfigurationBuilder AddYamlFile(this IConfigurationBuilder builder, string path) =>
+        AddYamlFile(builder, provider: null, path: path, optional: false, reloadOnChange: false);
 
     /// <summary>
     /// Adds a TOML configuration source to <paramref name="builder"/>.
@@ -31,10 +29,8 @@ public static class YamlConfigurationBuilderExtensions
     /// <see cref="IConfigurationBuilder.Properties"/> of <paramref name="builder"/>.</param>
     /// <param name="optional">Whether the file is optional.</param>
     /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
-    public static IConfigurationBuilder AddYamlFile(this IConfigurationBuilder builder, string path, bool optional)
-    {
-        return AddYamlFile(builder, provider: null, path: path, optional: optional, reloadOnChange: false);
-    }
+    public static IConfigurationBuilder AddYamlFile(this IConfigurationBuilder builder, string path, bool optional) =>
+        AddYamlFile(builder, provider: null, path: path, optional: optional, reloadOnChange: false);
 
     /// <summary>
     /// Adds a TOML configuration source to <paramref name="builder"/>.
@@ -45,10 +41,8 @@ public static class YamlConfigurationBuilderExtensions
     /// <param name="optional">Whether the file is optional.</param>
     /// <param name="reloadOnChange">Whether the configuration should be reloaded if the file changes.</param>
     /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
-    public static IConfigurationBuilder AddYamlFile(this IConfigurationBuilder builder, string path, bool optional, bool reloadOnChange)
-    {
-        return AddYamlFile(builder, provider: null, path: path, optional: optional, reloadOnChange: reloadOnChange);
-    }
+    public static IConfigurationBuilder AddYamlFile(this IConfigurationBuilder builder, string path, bool optional, bool reloadOnChange) =>
+        AddYamlFile(builder, provider: null, path: path, optional: optional, reloadOnChange: reloadOnChange);
 
     /// <summary>
     /// Adds a TOML configuration source to <paramref name="builder"/>.
@@ -61,6 +55,7 @@ public static class YamlConfigurationBuilderExtensions
     /// <param name="reloadOnChange">Whether the configuration should be reloaded if the file changes.</param>
     /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
     public static IConfigurationBuilder AddYamlFile(this IConfigurationBuilder builder, IFileProvider? provider, string path, bool optional, bool reloadOnChange)
+#pragma warning disable PH2071 // Avoid Duplicate Code
     {
         if (builder == null)
         {
@@ -80,6 +75,7 @@ public static class YamlConfigurationBuilderExtensions
             s.ReloadOnChange = reloadOnChange;
             s.ResolveFileProvider();
         });
+#pragma warning restore PH2071 // TODO: Refactor code to remove duplication
     }
 
     /// <summary>
@@ -88,8 +84,8 @@ public static class YamlConfigurationBuilderExtensions
     /// <param name="builder">The <see cref="IConfigurationBuilder"/> to add to.</param>
     /// <param name="configureSource">Configures the source.</param>
     /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
-    public static IConfigurationBuilder AddYamlFile(this IConfigurationBuilder builder, Action<YamlConfigurationSource> configureSource)
-        => builder.Add(configureSource);
+    public static IConfigurationBuilder AddYamlFile(this IConfigurationBuilder builder, Action<YamlConfigurationSource> configureSource) =>
+        builder.Add(configureSource);
 
     /// <summary>
     /// Adds a TOML configuration source to <paramref name="builder"/>.
@@ -105,7 +101,6 @@ public static class YamlConfigurationBuilderExtensions
         }
 
         IDictionary<string, string?> data;
-
         try
         {
             data = new YamlParser().Parse(stream);
@@ -115,7 +110,7 @@ public static class YamlConfigurationBuilderExtensions
             throw new FormatException("Unable to parse configuration file in YAML format.", e);
         }
 
-        var source = new MemoryConfigurationSource() { InitialData = data };
+        MemoryConfigurationSource source = new() { InitialData = data };
         return builder.Add(source);
     }
 }

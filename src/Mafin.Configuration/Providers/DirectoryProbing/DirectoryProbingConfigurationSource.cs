@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration.Ini;
 using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.Configuration.Xml;
 
+using IO = System.IO;
+
 namespace Mafin.Configuration.Providers.DirectoryProbing;
 
 /// <summary>
@@ -72,14 +74,9 @@ public class DirectoryProbingConfigurationSource : FileConfigurationSource
         {
             value = value.AddDirectorySeparatorChar();
 
-            if (System.IO.Path.IsPathFullyQualified(value))
-            {
-                _baseDirectory = value;
-            }
-            else
-            {
-                _baseDirectory = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, value));
-            }
+            _baseDirectory = value.IsPathFullyQualified()
+                ? value
+                : IO.Path.GetFullPath(IO.Path.Combine(Environment.CurrentDirectory, value));
         }
     }
 
@@ -88,11 +85,11 @@ public class DirectoryProbingConfigurationSource : FileConfigurationSource
 
     private List<string> GetConfigurationFiles()
     {
-        var result = new List<string>();
+        List<string> result = [];
 
         foreach (var pattern in FilePathPatterns)
         {
-            if (System.IO.Path.IsPathFullyQualified(pattern))
+            if (pattern.IsPathFullyQualified())
             {
                 result.Add(pattern);
             }
@@ -107,14 +104,13 @@ public class DirectoryProbingConfigurationSource : FileConfigurationSource
 
     private List<FileConfigurationSource> CreateConfigurationSources(IEnumerable<string> files)
     {
-        var result = new List<FileConfigurationSource>();
+        List<FileConfigurationSource> result = [];
 
         foreach (var filePath in files)
         {
-            var extension = System.IO.Path.GetExtension(filePath).TrimStart('.');
-            var sourceFactory = FormatSourceMap.GetValueOrDefault(extension);
+            var extension = IO.Path.GetExtension(filePath).TrimStart('.');
 
-            if (sourceFactory != default)
+            if (FormatSourceMap.TryGetValue(extension, out var sourceFactory))
             {
                 var source = sourceFactory.Invoke();
                 source.Path = filePath;
